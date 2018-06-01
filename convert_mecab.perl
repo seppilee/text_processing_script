@@ -27,7 +27,8 @@ while(<>){
                #$seg[$i] =~ s/_/ /g;
                print "$seg[$i]\n";
               }
-        #elsif($seg[$i] =~ /\/(J|EF|EC|EC|ET|M|IC|XS|NNB)/g)
+	#with korean particles
+	#elsif($seg[$i] =~ /\/(J|EF|EC|EC|ET|M|IC|XS|NNB)/g)
         #      {
         #       $seg[$i] =~ s/\/\S+/ /g;
         #       print "$seg[$i]";
