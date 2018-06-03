@@ -3,7 +3,6 @@
 use strict;
 
 binmode STDIN, ":utf8";
-binmode STDERR, ":uft8";
 binmode STDOUT, ":utf8";
 
 my %lines = ();
