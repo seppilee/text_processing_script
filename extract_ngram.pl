@@ -19,7 +19,7 @@ $#ARGV == 1 or die "Usage: $0 ngram_size filename\n";
 $ARGV[0] =~ m/^[1-9][0-9]*$/ or die "Error: invalid ngram size\n";
 open my $fo, $ARGV[1] or die "Error: $ARGV[1] not found\n";
 
-my $cnt = 0;
+my $line = 0;
 my %ngrams;
   
 while (<$fo>) {
@@ -30,14 +30,12 @@ while (<$fo>) {
 	   $ngrams{join ' ', @tkn[$j .. $j + $i]}++;
 			}
 		}
-		warn "$ARGV[1]: $cnt lines hashed\n" if ++$cnt % 100000 == 0;
+		warn "$ARGV[1]: $line lines hashed\n" if ++$line % 100000 == 0;
 	}
 
-$cnt = 0;
-warn "$ARGV[1]: sorting ngrams...\n";
+$line = 0;
 foreach (sort {$ngrams{$b} <=> $ngrams{$a}} keys %ngrams) {
 	print "$ngrams{$_}\t$_\n";
-	$cnt++;
+	$line++;
 }
-warn "$ARGV[1]: $cnt ngrams extracted\n";
 close $fo;
