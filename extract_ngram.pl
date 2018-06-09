@@ -22,7 +22,6 @@ open my $fo, $ARGV[1] or die "Error: $ARGV[1] not found\n";
 my $cnt = 0;
 my %ngrams;
 
-if ($ARGV[0]) {
 	while (<$fo>) {
 		$_ = trim $_;
 		my $len = length($_) - 1;
@@ -34,7 +33,6 @@ if ($ARGV[0]) {
 		}
 		warn "$ARGV[1]: $cnt lines hashed\n" if ++$cnt % 100000 == 0;
 	}
-} else {
 	while (<$fo>) {
 		$_ = trim $_;
 		my @tkn = split / /;
@@ -45,7 +43,6 @@ if ($ARGV[0]) {
 		}
 		warn "$ARGV[1]: $cnt lines hashed\n" if ++$cnt % 100000 == 0;
 	}
-}
 
 $cnt = 0;
 warn "$ARGV[1]: sorting ngrams...\n";
