@@ -21,24 +21,13 @@ open my $fo, $ARGV[1] or die "Error: $ARGV[1] not found\n";
 
 my $cnt = 0;
 my %ngrams;
-
-	while (<$fo>) {
-		$_ = trim $_;
-		my $len = length($_) - 1;
-		for my $i (0 .. $ARGV[0] - 1) {
-			for my $j (0 .. $len - $i) {
-				next if substr($_, $j, 1) eq ' ' or substr($_, $i + $j, 1) eq ' ';
-				$ngrams{substr $_, $j, $i + 1}++;
-			}
-		}
-		warn "$ARGV[1]: $cnt lines hashed\n" if ++$cnt % 100000 == 0;
-	}
-	while (<$fo>) {
-		$_ = trim $_;
-		my @tkn = split / /;
-		for my $i (0 .. $ARGV[0] - 1) {
-			for my $j (0 .. $#tkn - $i) {
-				$ngrams{join ' ', @tkn[$j .. $j + $i]}++;
+  
+while (<$fo>) {
+   $_ = trim $_;
+   my @tkn = split / /;
+   for my $i (0 .. $ARGV[0] - 1) {
+       for my $j (0 .. $#tkn - $i) {
+	   $ngrams{join ' ', @tkn[$j .. $j + $i]}++;
 			}
 		}
 		warn "$ARGV[1]: $cnt lines hashed\n" if ++$cnt % 100000 == 0;
